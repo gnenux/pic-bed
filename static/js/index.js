@@ -41,7 +41,23 @@
                 }
             }
 
-            form.submit();
+            var fd = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function(event){
+                if(event.target.responseText!= "undefined" && event.target.responseText!=null) {
+                    var res = JSON.parse(event.target.responseText);
+                    if (res["error"]!= "undefined" && res["error"]!=null ){
+                        alert(res["error"]);
+                    }
+                }
+            });
+
+            xhr.addEventListener("error",function (event) {
+                alert('Oups! Something goes wrong.');
+            })
+
+            xhr.open("POST",form.action);
+            xhr.send(fd);
        }
 
        inputs["images"].click();
