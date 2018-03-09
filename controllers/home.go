@@ -18,6 +18,12 @@ func (this *HomeController) Get() {
 	user := this.GetSession("user")
 	if user != nil {
 		this.Data["User"] = user.(models.User)
+		imgDates, err := models.GetImageDate(user.(models.User).Id)
+		if err != nil {
+
+		} else {
+			this.Data["SiderNavs"] = imgDates
+		}
 		this.TplName = "index.html"
 	} else {
 		this.Data["URL"] = &URL{

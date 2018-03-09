@@ -11,6 +11,8 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"reflect"
+	"sort"
 	"strings"
 	"time"
 
@@ -18,6 +20,7 @@ import (
 
 	"golang.org/x/image/bmp"
 
+	"github.com/astaxie/beego/orm"
 	"github.com/nfnt/resize"
 )
 
@@ -26,7 +29,7 @@ type Image struct {
 	UserID        string   `orm:"size(25)"`
 	ImageName     string   `orm:"size(40)"`
 	ThumbnailName string   `orm:"size(50)"`
-	Path          string   `orm:"size(128)"`
+	Path          string   `orm:"size(255)"`
 	Year          int      `orm:"size(6)"`
 	Month         int      `orm:"size(6)"`
 	Day           int      `orm:"size(6)"`
@@ -35,9 +38,46 @@ type Image struct {
 	ThumbnailFile *os.File `orm:"-"`
 }
 
-type TImage struct {
-	Name string `form:"name"`
-	Size int    `form:"size"`
+func (img *Image) TableIndex() [][]string {
+	return [][]string{
+		[]string{"UserID", "ImageID"},
+	}
+}
+
+type ImageDate struct {
+	Year  int `orm:"size(6)"`
+	Month int `orm:"size(6)"`
+}
+
+type imageDateSorter []ImageDate
+
+func (ids imageDateSorter) Len() int {
+	return len(ids)
+}
+
+func (ids imageDateSorter) Swap(i, j int) {
+	ids[i], ids[j] = ids[j], ids[i]
+}
+
+func (ids imageDateSorter) Less(i, j int) bool {
+	if ids[i].Year < ids[j].Year {
+		return true
+	} else if ids[i].Year == ids[j].Year {
+		if ids[i].Month < ids[j].Month {
+			return true
+		}
+	}
+	return false
+}
+
+func duplicate(a []ImageDate) (ret []ImageDate) {
+	for index := 0; index < len(a); index++ {
+		if index > 0 && reflect.DeepEqual(a[index-1], a[index]) {
+			continue
+		}
+		ret = append(ret, a[index])
+	}
+	return ret
 }
 
 var PWD string
@@ -164,6 +204,21 @@ func AddOneImage(header *multipart.FileHeader, UserID string) (*Image, error) {
 
 func GetAllImage() map[string]*Image {
 	return nil
+}
+
+func GetImageDate(userID string) ([]ImageDate, error) {
+	qb, _ := orm.NewQueryBuilder("mysql")
+	qb.Select("image.year", "image.month").From("image").Where("image.user_i_d = " + userID)
+	sqlStr := qb.String()
+	var imgDates []ImageDate
+
+	O.Raw(sqlStr).QueryRows(&imgDates)
+
+	sort.Sort(imageDateSorter(imgDates))
+
+	res := duplicate(imgDates)
+
+	return res, nil
 }
 
 func DeleteImage(ImageID string) error {

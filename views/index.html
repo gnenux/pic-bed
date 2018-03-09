@@ -11,41 +11,132 @@
     <title>Hello, world!</title>
   </head>
   <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                  </ul>
-                  <form id="form-upload" class="form-inline my-2 my-lg-0" action="/v1/image" method="POST" enctype="multipart/form-data">
-                    <input class="form-control mr-sm-2" name="images" type="file" multiple>
-                    <button id="form-upload-btn" class="btn btn-outline-success my-2 my-sm-0" type="button">Upload</button>
-                  </form>
+
+    {{ template "include/topnav.html" . }}
+  
+    <div class="container-fluid">
+        <div class="row">
+          {{ template "include/sidernav.html" .SiderNavs }}
+  
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+              <div class="album py-5 bg-light">
+                  <div class="container">
+          
+                    <div class="row">
+        
+        
+                      <div class="col-md-2">
+                          <div class="card mb-3 box-shadow">
+                            <img class="card-img-top" src="/static/2018/3/7/7f1bd86824b5894309bbf1f40edec793_thumbnail.jpg" alt="Card image cap">
+                            <div class="card-body">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-light">View</button>
+                                </div>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+        
+        
+                        <div class="col-md-2">
+                            <div class="card mb-3 box-shadow">
+                              <img class="card-img-top" src="/static/2018/3/7/7f1bd86824b5894309bbf1f40edec793_thumbnail.jpg" alt="Card image cap">
+                              <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-light">View</button>
+                                  </div>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+        
+                          <div class="col-md-2">
+                              <div class="card mb-3 box-shadow">
+                                <img class="card-img-top" src="/static/2018/3/7/7f1bd86824b5894309bbf1f40edec793_thumbnail.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-sm btn-light">View</button>
+                                    </div>
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+        
+        
+                            <div class="col-md-2">
+                                <div class="card mb-3 box-shadow">
+                                  <img class="card-img-top" src="/static/2018/3/7/7f1bd86824b5894309bbf1f40edec793_thumbnail.jpg" alt="Card image cap">
+                                  <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                      <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-light">View</button>
+                                      </div>
+                                      <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+        
+        
+                              <div class="col-md-2">
+                                  <div class="card mb-3 box-shadow">
+                                    <img class="card-img-top" src="/static/2018/3/7/7f1bd86824b5894309bbf1f40edec793_thumbnail.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                      <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                          <button type="button" class="btn btn-sm btn-light">View</button>
+                                        </div>
+                                        <div class="btn-group">
+                                          <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+        
+        
+                                <div class="col-md-2">
+                                    <div class="card mb-3 box-shadow">
+                                      <img class="card-img-top" src="/static/2018/3/7/7f1bd86824b5894309bbf1f40edec793_thumbnail.jpg" alt="Card image cap">
+                                      <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                          <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-light">View</button>
+                                          </div>
+                                          <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+        
+        
+        
+                    </div>
+                  </div>
                 </div>
-              </nav>
+        
+
+          </main>
+        </div>
+      </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
