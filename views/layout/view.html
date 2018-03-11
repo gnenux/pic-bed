@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/index.css" rel="stylesheet">
+    <title>Pic-Bed</title>
+  </head>
+  <body>
+
+    {{ template "include/topnav.html" . }}
+    
+    <div class="text-center">
+      <img src="/static{{.Path}}" class="rounded" alt="...">
+      
+      <div>
+        <label>url: </label>
+        <code>{{.URL.Domian}}/static{{.Path}}</code>
+      </div>
+
+      <div>
+        <label>html: </label>
+        <code>&lt;img src="{{.URL.Domian}}/static{{.Path}}"&gt;</code>
+      </div>
+
+      <div>
+        <label>markdown: </label>
+        <code>![]({{.URL.Domian}}/static{{.Path}})</code>
+      </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/static/dist/js/jquery-slim.min.js"></script>
+    <script src="/static/dist/js/popper.min.js"></script>
+    <script src="/static/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

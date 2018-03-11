@@ -8,11 +8,11 @@
     <!-- Bootstrap core CSS -->
     <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/index.css" rel="stylesheet">
-    <title>Hello, world!</title>
+    <title>Pic-Bed</title>
   </head>
   <body>
 
-    {{ template "include/topnav.html" . }}
+    {{ template "include/topnav.html" .}}
   
     <div class="container-fluid">
         <div class="row">
@@ -20,12 +20,13 @@
   
           <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-              <div class="album py-5 bg-light">
+              <div class="album py-5 bg-light" id="album">
                   <div class="container">
           
                     <div class="row">
         
-        
+                      {{ template "include/content.html" .}}
+
                       <div class="col-md-2">
                           <div class="card mb-3 box-shadow">
                             <img class="card-img-top" src="/static/2018/3/7/7f1bd86824b5894309bbf1f40edec793_thumbnail.jpg" alt="Card image cap">

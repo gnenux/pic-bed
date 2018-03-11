@@ -24,7 +24,22 @@ paths:
         required: true
         type: file
       responses:
-        "200":
+        "201":
+          description: '{int}'
+  /image/{iid}:
+    delete:
+      tags:
+      - image
+      description: delete image
+      operationId: ImgaeController.DeleteImage
+      parameters:
+      - in: string
+        name: iid
+        description: imageid for delete
+        schema:
+          $ref: '#/definitions/.true'
+      responses:
+        "204":
           description: '{int}'
   /user/:
     post:
@@ -131,6 +146,8 @@ paths:
       description: signup user
       operationId: UserController.Signup
 definitions:
+  .true:
+    type: object
   models.LoginUser:
     title: LoginUser
     type: object

@@ -17,6 +17,7 @@ type UserController struct {
 // @Description signup user
 // @router /signup [get]
 func (u *UserController) Signup() {
+	u.Data["URL"] = &models.URL
 	u.TplName = "layout/signup.html"
 	u.Render()
 }

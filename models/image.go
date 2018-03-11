@@ -202,8 +202,18 @@ func AddOneImage(header *multipart.FileHeader, UserID string) (*Image, error) {
 	return img, nil
 }
 
-func GetAllImage() map[string]*Image {
-	return nil
+func GetAllImage(userID string) ([]*Image, error) {
+	var res []*Image
+	qs := O.QueryTable("image")
+	_, err := qs.Filter("user_i_d", userID).All(&res)
+	return res, err
+}
+
+func GetSomeImages(userID string, year, month int) ([]*Image, error) {
+	var res []*Image
+	qs := O.QueryTable("image")
+	_, err := qs.Filter("user_i_d", userID).Filter("year", year).Filter("month", month).All(&res)
+	return res, err
 }
 
 func GetImageDate(userID string) ([]ImageDate, error) {
@@ -221,8 +231,8 @@ func GetImageDate(userID string) ([]ImageDate, error) {
 	return res, nil
 }
 
-func DeleteImage(ImageID string) error {
-	img := &Image{ImageID: ImageID}
+func DeleteImage(ImageID, userID string) error {
+	img := &Image{ImageID: ImageID, UserID: userID}
 	if err := O.Read(img); err != nil {
 		return err
 	}

@@ -64,6 +64,18 @@
     })
   });
   
+  addLoadListener(()=>{
+      var album = document.getElementById("album");
+      album.onclick = (e)=> {
+          var classList = e.target.classList;
+            album.parentElement
+          if(classList.contains("btn-danger")){
+             var card =  e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+             card.parentElement.removeChild(card);          
+          }
+      }
+  });
+
   function validateFile(fileName) {
       var index = fileName.lastIndexOf('.');
       if(index < 0){
@@ -82,3 +94,27 @@
   }
 
 })();
+
+
+function deleteImage(url,imageId) {
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", function(event){
+        if(event.target.status!="undefined" && event.target.status != null && event.target.status != 204){
+            if(event.target.responseText!= "undefined" && event.target.responseText!=null) {
+                var res = JSON.parse(event.target.responseText);
+                if (res["error"]!= "undefined" && res["error"]!=null ){
+                    alert(res["error"]);
+                }
+            }
+        }else{
+            event.target.style.display = "none";
+        }
+    });
+
+    xhr.addEventListener("error",function (event) {
+        alert('Oups! Something goes wrong.');
+    })
+
+    xhr.open("DELETE",url+"/"+imageId);
+    xhr.send();
+}

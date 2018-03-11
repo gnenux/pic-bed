@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"time"
 )
@@ -61,6 +62,7 @@ func UpdateUser(uid string, uu *User) (*User, error) {
 
 func Login(email, password string) (*User, error) {
 	u := &User{Email: email}
+	fmt.Println("email: " + email)
 	err := O.Read(u, "Email")
 	if err != nil {
 		return nil, errors.New("User not found")

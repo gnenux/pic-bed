@@ -51,7 +51,7 @@
                 alert("Oups! Something goes wrong.");
             })
 
-            xhr.open("POST","http://127.0.0.1:8080/v1/user");
+            xhr.open("POST",form.action);
             xhr.send(JSON.stringify(data));
         }
 

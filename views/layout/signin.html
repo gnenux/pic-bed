@@ -24,7 +24,7 @@
         </a>
     </nav>
 
-    <form class="form" id="form-signin" action="http://{{.URL.Signin}}" method="POST">
+    <form class="form" id="form-signin" action="{{.URL.Signin}}" method="POST">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">欢迎登录</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
@@ -37,7 +37,7 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
-      <a class="btn btn-lg btn-primary" href="http://{{.URL.Signup}}" role="button">Sign up</a>
+      <a class="btn btn-lg btn-primary" href="{{.URL.Signup}}" role="button">Sign up</a>
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
     <script src="/static/js/signin.js"></script>

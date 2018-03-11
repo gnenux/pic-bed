@@ -8,9 +8,9 @@
 package routers
 
 import (
-	"github.com/gnenux/pic-bed/controllers"
-
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
+	"github.com/gnenux/pic-bed/controllers"
 )
 
 func init() {
@@ -28,4 +28,8 @@ func init() {
 	)
 	beego.AddNamespace(ns)
 	beego.Router("/", &controllers.HomeController{})
+	beego.InsertFilter("/static/*", beego.BeforeStatic, func(ctx *context.Context) {
+		ctx.Output.Header("Access-Control-Allow-Origin", "*")
+		ctx.Output.Header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS")
+	})
 }

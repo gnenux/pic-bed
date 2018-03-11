@@ -29,7 +29,7 @@
 
     var loginInfo = new Object();
 
-    var form = this.document.getElementById("form-signin")
+    var form = this.document.getElementById("form-signin");
 
     var fd = new FormData(form);
     for(var key of fd.keys()){
@@ -54,13 +54,12 @@
         alert('Oups! Something goes wrong.');
       });
   
-      xhr.open("POST", "http://127.0.0.1:8080/v1/user/login");
+      xhr.open("POST", form.action);
 
       xhr.send(JSON.stringify(loginInfo));
     }
 
-    var form = document.getElementById("form-signin");
-
+    var form = this.document.getElementById("form-signin");
     form.addEventListener("submit", function (event) {
       event.preventDefault();
   
