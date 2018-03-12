@@ -165,15 +165,14 @@ func GenImageID(img *Image) {
 	fmt.Println("imageID: " + img.ImageID)
 }
 
-func GenImageName(img *Image, header *multipart.FileHeader) {
+func GenImageName(img *Image, header *multipart.FileHeader, now time.Time) {
 	img.Suffix = strings.ToLower(filepath.Ext(header.Filename))
-	img.ImageName = fmt.Sprintf("%x", md5.Sum([]byte(header.Filename+img.UserID)))
+	img.ImageName = fmt.Sprintf("%x", md5.Sum([]byte(header.Filename+img.UserID+now.String())))
 	img.ThumbnailName = img.ImageName + "_thumbnail"
 	img.Path = fmt.Sprintf("/%d/%d/%d/", img.Year, img.Month, img.Day)
 }
 
-func GenTime(img *Image) {
-	now := time.Now()
+func GenTime(img *Image, now time.Time) {
 	img.Year = now.Year()
 	img.Month = int(now.Month())
 	img.Day = now.Day()
@@ -181,8 +180,9 @@ func GenTime(img *Image) {
 
 func AddOneImage(header *multipart.FileHeader, UserID string) (*Image, error) {
 	img := &Image{UserID: UserID}
-	GenTime(img)
-	GenImageName(img, header)
+	now := time.Now()
+	GenTime(img, now)
+	GenImageName(img, header, now)
 	GenImageID(img)
 
 	f, err := header.Open()
