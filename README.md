@@ -11,7 +11,7 @@
     Change the line 32&34 to your own database account and password
 
 2. 
-    
+
     cd ./pic-bed
     go build
     ./pic-bed
